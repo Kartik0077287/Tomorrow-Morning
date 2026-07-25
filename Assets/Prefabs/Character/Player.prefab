@@ -177,6 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6554650522593892978}
+  - component: {fileID: 159572894869556011}
   m_Layer: 0
   m_Name: Camera Pivot
   m_TagString: Untagged
@@ -200,6 +201,20 @@ Transform:
   - {fileID: 4210315206760382711}
   m_Father: {fileID: 3918020392605644161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159572894869556011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8265441497646416278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71abd2004f273ba4aa9351733e4bf96a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseLook
+  playerBody: {fileID: 3918020392605644161}
+  sensitivity: 150
 --- !u!1001 &3590815536671593066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -210,15 +225,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 12b930c46aa56994b90acc81192a81dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 335.1
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12b930c46aa56994b90acc81192a81dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 90.1
+      value: 0.0082
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12b930c46aa56994b90acc81192a81dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 721.8
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 12b930c46aa56994b90acc81192a81dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -269,6 +284,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12b930c46aa56994b90acc81192a81dc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3986511516581158325}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12b930c46aa56994b90acc81192a81dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8163801525230709987}
   m_SourcePrefab: {fileID: 100100000, guid: 12b930c46aa56994b90acc81192a81dc, type: 3}
 --- !u!4 &3918020392605644161 stripped
 Transform:
@@ -314,7 +332,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4401224534595645243}
-  m_Material: {fileID: 13400000, guid: cc2c4cbea1d368e4ca420f14a8385fbd, type: 2}
+  m_Material: {fileID: 13400000, guid: 8f33552ca9b8e6a46976d07156de6686, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -330,3 +348,24 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &8163801525230709987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4401224534595645243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dbb26a567f62594699e2e1ebe88ae95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  walkSpeed: 5
+  sprintSpeed: 10
+  acceleration: 20
+  jumpForce: 7
+  groundCheck: {fileID: 6067774763965941426}
+  groundRadius: 0.3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
