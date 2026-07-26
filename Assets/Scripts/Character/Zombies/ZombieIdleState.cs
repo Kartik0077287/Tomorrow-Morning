@@ -16,12 +16,17 @@ public class ZombieIdleState : ZombieState
 
         idleDuration = Random.Range(2f, 5f);
         idleTimer = 0f;
-
-        Debug.Log("Zombie entered Idle State");
     }
 
     public override void Update()
     {
+        // Player detected
+        if (zombie.Detection.CanSeePlayer)
+        {
+            zombie.ChangeState(zombie.ChaseState);
+            return;
+        }
+
         idleTimer += Time.deltaTime;
 
         if (idleTimer >= idleDuration)

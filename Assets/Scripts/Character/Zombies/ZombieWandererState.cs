@@ -23,6 +23,12 @@ public class ZombieWanderState : ZombieState
 
     public override void Update()
     {
+        if (zombie.Detection.CanSeePlayer)
+        {
+            zombie.ChangeState(zombie.ChaseState);
+            return;
+        }
+
         if (zombie.Agent.pathPending)
             return;
 
