@@ -14,6 +14,8 @@ public class ZombieWanderState : ZombieState
     {
         zombie.Agent.isStopped = false;
 
+        zombie.Agent.speed = zombie.WanderSpeed;
+
         Vector3 randomPoint = GetRandomNavMeshPoint();
 
         zombie.Agent.SetDestination(randomPoint);
@@ -36,6 +38,7 @@ public class ZombieWanderState : ZombieState
         {
             zombie.ChangeState(zombie.IdleState);
         }
+        zombie.Agent.speed = zombie.WanderSpeed;
     }
 
     public override void Exit()

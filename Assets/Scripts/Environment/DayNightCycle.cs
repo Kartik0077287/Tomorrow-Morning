@@ -32,6 +32,17 @@ public class DayNightCycle : MonoBehaviour
 
     private float timeOfDayNormalized;
 
+    [Header("Day / Night Time")]
+    [SerializeField, Range(0f, 24f)] private float dayStartTime = 6f;
+    [SerializeField, Range(0f, 24f)] private float nightStartTime = 18f;
+
+    public float CurrentTime => currentTime;
+
+    public bool IsDay =>
+        currentTime >= dayStartTime &&
+        currentTime < nightStartTime;
+
+    public bool IsNight => !IsDay;
     private void Awake()
     {
         CreateDefaultCurves();

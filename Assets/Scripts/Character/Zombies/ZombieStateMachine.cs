@@ -14,6 +14,26 @@ public class ZombieStateMachine : MonoBehaviour
     public ZombieWanderState WanderState { get; private set; }
     public ZombieChaseState ChaseState { get; private set; }
 
+    [Header("Day / Night")]
+    [SerializeField] private DayNightCycle dayNightCycle;
+
+    [Header("Wander Speed")]
+    [SerializeField] private float dayWanderSpeed = 1.5f;
+    [SerializeField] private float nightWanderSpeed = 2.5f;
+
+    [Header("Chase Speed")]
+    [SerializeField] private float dayChaseSpeed = 2.5f;
+    [SerializeField] private float nightChaseSpeed = 4.5f;
+
+    public float WanderSpeed =>
+        dayNightCycle.IsDay
+            ? dayWanderSpeed
+            : nightWanderSpeed;
+
+    public float ChaseSpeed =>
+        dayNightCycle.IsDay
+            ? dayChaseSpeed
+            : nightChaseSpeed;
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -22,6 +42,11 @@ public class ZombieStateMachine : MonoBehaviour
         IdleState = new ZombieIdleState(this);
         WanderState = new ZombieWanderState(this);
         ChaseState = new ZombieChaseState(this);
+
+        if (dayNightCycle == null)
+        {
+            dayNightCycle = FindFirstObjectByType<DayNightCycle>();
+        }
     }
 
     private void Start()

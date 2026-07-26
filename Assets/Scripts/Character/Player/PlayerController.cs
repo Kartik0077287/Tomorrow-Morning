@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private PlayerClimbing climbing;
+
     private Rigidbody rb;
 
     private float horizontal;
@@ -45,6 +47,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (climbing.IsClimbing || climbing.IsMantling)
+            return;
+
         Move();
 
         if (jumpPressed)
@@ -56,6 +61,9 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (climbing.IsClimbing || climbing.IsMantling)
+            return;
+
         float speed = Input.GetKey(KeyCode.LeftShift)
             ? sprintSpeed
             : walkSpeed;
@@ -76,6 +84,9 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        if (climbing.IsClimbing || climbing.IsMantling)
+            return;
+
         if (!isGrounded)
             return;
 

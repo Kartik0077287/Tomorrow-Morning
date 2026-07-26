@@ -9,7 +9,6 @@ public class ZombieChaseState : ZombieState
     private float lostPlayerTimer;
 
     private const float memoryDuration = 4f;
-    private const float chaseSpeed = 4.5f;
 
     public ZombieChaseState(ZombieStateMachine zombie)
         : base(zombie)
@@ -19,7 +18,7 @@ public class ZombieChaseState : ZombieState
     public override void Enter()
     {
         zombie.Agent.isStopped = false;
-        zombie.Agent.speed = chaseSpeed;
+        zombie.Agent.speed = zombie.ChaseSpeed;
 
         lostPlayerTimer = 0f;
 
@@ -46,6 +45,7 @@ public class ZombieChaseState : ZombieState
 
             return;
         }
+        zombie.Agent.speed = zombie.ChaseSpeed;
 
         // Player currently isn't visible
         lostPlayerTimer += Time.deltaTime;
@@ -64,6 +64,6 @@ public class ZombieChaseState : ZombieState
         target = null;
 
         // Return to normal wandering speed
-        zombie.Agent.speed = 2.5f;
+        
     }
 }
