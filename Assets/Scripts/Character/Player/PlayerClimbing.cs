@@ -16,6 +16,7 @@ public class PlayerClimbing : MonoBehaviour
     [SerializeField] private float wallDistance = 0.55f;
     [SerializeField] private float rotationSpeed = 12f;
     [SerializeField] private float snapSpeed = 10f;
+    [SerializeField] private PlayerStamina stamina;
 
     [Header("Ledge Detection")]
     [SerializeField] private float ledgeCheckHeight = 1.5f;
@@ -115,6 +116,14 @@ public class PlayerClimbing : MonoBehaviour
 
     private void HandleClimbing()
     {
+        if (!stamina.HasStamina)
+        {
+            StopClimbing();
+            return;
+        }
+
+        stamina.DrainClimb();
+
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         rb.linearVelocity =

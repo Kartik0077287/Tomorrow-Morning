@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private PlayerClimbing climbing;
+    [SerializeField] private PlayerStamina stamina;
 
     private Rigidbody rb;
 
@@ -64,9 +65,20 @@ public class PlayerController : MonoBehaviour
         if (climbing.IsClimbing || climbing.IsMantling)
             return;
 
-        float speed = Input.GetKey(KeyCode.LeftShift)
-            ? sprintSpeed
-            : walkSpeed;
+        bool isMoving = Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f;
+
+        bool isSprinting =
+            Input.GetKey(KeyCode.LeftShift) &&
+            isMoving &&
+            stamina.HasStamina;
+
+        float speed = walkSpeed;
+
+        if (isSprinting)
+        {
+            speed = sprintSpeed;
+            stamina.DrainSprint();
+        }
 
         Vector3 move =
             transform.forward * vertical +
@@ -77,9 +89,14 @@ public class PlayerController : MonoBehaviour
         Vector3 targetVelocity = move * speed;
 
         Vector3 velocity = rb.linearVelocity;
-        Vector3 velocityChange = targetVelocity - new Vector3(velocity.x, 0, velocity.z);
 
-        rb.AddForce(velocityChange * acceleration, ForceMode.Acceleration);
+        Vector3 velocityChange =
+            targetVelocity -
+            new Vector3(velocity.x, 0, velocity.z);
+
+        rb.AddForce(
+            velocityChange * acceleration,
+            ForceMode.Acceleration);
     }
 
     private void Jump()
