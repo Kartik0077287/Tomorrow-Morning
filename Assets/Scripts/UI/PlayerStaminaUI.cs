@@ -11,16 +11,35 @@ public class PlayerStaminaUI : MonoBehaviour
 
     private void OnEnable()
     {
-        playerStamina.OnStaminaChanged += UpdateBar;
+        if (playerStamina != null)
+            playerStamina.OnStaminaChanged += UpdateBar;
     }
 
     private void OnDisable()
     {
-        playerStamina.OnStaminaChanged -= UpdateBar;
+        if (playerStamina != null)
+            playerStamina.OnStaminaChanged -= UpdateBar;
     }
 
     private void Start()
     {
+        if (playerStamina == null)
+        {
+            Debug.LogWarning("PlayerStamina reference is not assigned on PlayerStaminaUI.");
+            enabled = false;
+            return;
+        }
+
+        if (fillImage == null)
+        {
+            Debug.LogWarning("Fill Image reference is not assigned on PlayerStaminaUI.");
+            enabled = false;
+            return;
+        }
+
+        // Ensure the Image is set to Filled so fillAmount has effect
+        fillImage.type = Image.Type.Filled;
+
         targetFill = playerStamina.CurrentStamina / playerStamina.MaxStamina;
         fillImage.fillAmount = targetFill;
     }
