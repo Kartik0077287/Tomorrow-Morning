@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private PlayerClimbing climbing;
     [SerializeField] private PlayerStamina stamina;
+    [SerializeField] private PlayerAnimation playerAnimation;
 
     private Rigidbody rb;
 
@@ -65,12 +66,17 @@ public class PlayerController : MonoBehaviour
         if (climbing.IsClimbing || climbing.IsMantling)
             return;
 
-        bool isMoving = Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f;
+        bool isMoving =
+            Mathf.Abs(horizontal) > 0.1f ||
+            Mathf.Abs(vertical) > 0.1f;
 
         bool isSprinting =
             Input.GetKey(KeyCode.LeftShift) &&
             isMoving &&
             stamina.HasStamina;
+
+        // Animation
+        playerAnimation.SetMovement(isMoving, isSprinting);
 
         float speed = walkSpeed;
 
