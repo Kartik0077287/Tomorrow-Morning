@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
             groundCheck.position,
             groundRadius,
             groundLayer);
+
+        playerAnimation.SetGrounded(isGrounded);
     }
 
     private void FixedUpdate()
