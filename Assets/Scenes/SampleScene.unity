@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 28491723}
   - component: {fileID: 28491725}
   - component: {fileID: 28491724}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_0_0_dcd8fc11-8844-4307-8a7f-958d3510c500
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28491722}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 92b096d4950da6942b8685a1ac247d42, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 5b590837ed324164e954e2f9dd52885c, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &909468527
 Transform:
@@ -771,6 +771,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1527786136578212732, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
+      propertyPath: m_Mass
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 1676790833916736619, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: climbSpeed
       value: 1.5
@@ -781,15 +785,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 193
+      value: 181
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 103
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 768
+      value: 1153
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalRotation.w
