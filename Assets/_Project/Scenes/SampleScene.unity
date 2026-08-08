@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 28491723}
   - component: {fileID: 28491725}
   - component: {fileID: 28491724}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Terrain_0_0_dcd8fc11-8844-4307-8a7f-958d3510c500
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 28491722}
-  m_Material: {fileID: 13400000, guid: 92b096d4950da6942b8685a1ac247d42, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -992,6 +992,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD:Assets/_Project/Scenes/SampleScene.unity
+=======
+    - target: {fileID: 1676790833916736619, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
+      propertyPath: climbSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+>>>>>>> parent of c9216a5 (asset import):Assets/Scenes/SampleScene.unity
     - target: {fileID: 3599788240769285214, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1027,6 +1034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD:Assets/_Project/Scenes/SampleScene.unity
       value: 3004.5
 <<<<<<< HEAD:Assets/_Project/Scenes/SampleScene.unity
 >>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97:Assets/Scenes/SampleScene.unity
@@ -1087,13 +1095,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
 <<<<<<< HEAD:Assets/_Project/Scenes/SampleScene.unity
       value: 181
+=======
+      value: 193
+>>>>>>> parent of c9216a5 (asset import):Assets/Scenes/SampleScene.unity
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41
+      value: 103
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< HEAD:Assets/_Project/Scenes/SampleScene.unity
       value: 1153
 =======
       value: 3004.5
@@ -1116,6 +1128,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3829
 >>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97:Assets/Scenes/SampleScene.unity
+=======
+      value: 768
+>>>>>>> parent of c9216a5 (asset import):Assets/Scenes/SampleScene.unity
       objectReference: {fileID: 0}
     - target: {fileID: 4233054867953690340, guid: 57b610277aed52b469a49b47bfd97717, type: 3}
       propertyPath: m_LocalRotation.w

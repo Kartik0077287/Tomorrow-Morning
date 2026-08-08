@@ -102,6 +102,7 @@ Material:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - _Exposure: 0.75827444
 =======
     - _Exposure: 0.74107856
@@ -112,6 +113,9 @@ Material:
 =======
     - _Exposure: 0.74107856
 >>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97
+=======
+    - _Exposure: 0.6644167
+>>>>>>> parent of c9216a5 (asset import)
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
