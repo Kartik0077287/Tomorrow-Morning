@@ -1,0 +1,57 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+{
+  "name": "sc.terrain.proceduralpainter",
+  "description": "Ruled-based procedural terrain painter",
+  "version": "1.0.5",
+  "unity": "2019.3",
+  "displayName": "Procedural Terrain Painter",
+  "author": {
+    "name": "Staggart Creations",
+    "email": "contact@staggart.xyz",
+    "url": "http://staggart.xyz/"
+  },
+  "keywords": [
+    "terrain",
+    "texturing",
+    "world building"
+  ]
+}
+=======
+{
+  "name": "sc.terrain.proceduralpainter",
+  "description": "Ruled-based procedural terrain painter",
+  "version": "1.0.5",
+  "unity": "2019.3",
+  "displayName": "Procedural Terrain Painter",
+  "author": {
+    "name": "Staggart Creations",
+    "email": "contact@staggart.xyz",
+    "url": "http://staggart.xyz/"
+  },
+  "keywords": [
+    "terrain",
+    "texturing",
+    "world building"
+  ]
+}
+>>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97
+=======
+{
+  "name": "sc.terrain.proceduralpainter",
+  "description": "Ruled-based procedural terrain painter",
+  "version": "1.0.5",
+  "unity": "2019.3",
+  "displayName": "Procedural Terrain Painter",
+  "author": {
+    "name": "Staggart Creations",
+    "email": "contact@staggart.xyz",
+    "url": "http://staggart.xyz/"
+  },
+  "keywords": [
+    "terrain",
+    "texturing",
+    "world building"
+  ]
+}
+>>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97

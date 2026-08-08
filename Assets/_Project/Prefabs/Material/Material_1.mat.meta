@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Project/Prefabs/Material/Material_1.mat.meta
+guid: a6c102a5588496e4d99dea78b7ac8ce6
+========
+guid: 98e916e3bc8a44c7b86a93f59945286a
+>>>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97:Assets/_Project/Terrain/Terrain_File.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

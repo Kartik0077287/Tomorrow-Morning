@@ -99,7 +99,19 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Exposure: 1.2093421
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    - _Exposure: 0.75827444
+=======
+    - _Exposure: 0.74107856
+>>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97
+=======
+    - _Exposure: 0.74107856
+>>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97
+=======
+    - _Exposure: 0.74107856
+>>>>>>> e747edb2e1b24969344ccd906093e4e2ca00df97
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
