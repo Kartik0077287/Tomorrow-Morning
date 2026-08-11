@@ -16,16 +16,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundRadius = 0.3f;
     [SerializeField] private LayerMask groundLayer;
 
-    [SerializeField] private PlayerClimbing climbing;
     [SerializeField] private PlayerStamina stamina;
     [SerializeField] private PlayerAnimation playerAnimation;
 
     private Rigidbody rb;
-
     private float horizontal;
     private float vertical;
     private bool jumpPressed;
-
     private bool isGrounded;
 
     private void Awake()
@@ -41,19 +38,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
             jumpPressed = true;
 
-        isGrounded = Physics.CheckSphere(
-            groundCheck.position,
-            groundRadius,
-            groundLayer);
-
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundLayer);
         playerAnimation.SetGrounded(isGrounded);
     }
 
     private void FixedUpdate()
     {
-        if (climbing.IsClimbing || climbing.IsMantling)
-            return;
-
         Move();
 
         if (jumpPressed)
@@ -65,53 +55,30 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (climbing.IsClimbing || climbing.IsMantling)
-            return;
+        bool isMoving = Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f;
+        bool isSprinting = Input.GetKey(KeyCode.LeftShift) && isMoving && stamina.HasStamina;
 
-        bool isMoving =
-            Mathf.Abs(horizontal) > 0.1f ||
-            Mathf.Abs(vertical) > 0.1f;
-
-        bool isSprinting =
-            Input.GetKey(KeyCode.LeftShift) &&
-            isMoving &&
-            stamina.HasStamina;
-
-        // Animation
         playerAnimation.SetMovement(isMoving, isSprinting);
 
         float speed = walkSpeed;
-
         if (isSprinting)
         {
             speed = sprintSpeed;
             stamina.DrainSprint();
         }
 
-        Vector3 move =
-            transform.forward * vertical +
-            transform.right * horizontal;
-
+        Vector3 move = transform.forward * vertical + transform.right * horizontal;
         move.Normalize();
 
         Vector3 targetVelocity = move * speed;
-
         Vector3 velocity = rb.linearVelocity;
+        Vector3 velocityChange = targetVelocity - new Vector3(velocity.x, 0, velocity.z);
 
-        Vector3 velocityChange =
-            targetVelocity -
-            new Vector3(velocity.x, 0, velocity.z);
-
-        rb.AddForce(
-            velocityChange * acceleration,
-            ForceMode.Acceleration);
+        rb.AddForce(velocityChange * acceleration, ForceMode.Acceleration);
     }
 
     private void Jump()
     {
-        if (climbing.IsClimbing || climbing.IsMantling)
-            return;
-
         if (!isGrounded)
             return;
 

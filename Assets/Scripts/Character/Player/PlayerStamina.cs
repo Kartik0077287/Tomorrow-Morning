@@ -12,7 +12,6 @@ public class PlayerStamina : MonoBehaviour
 
     [Header("Drain")]
     [SerializeField] private float sprintDrain = 15f;
-    [SerializeField] private float climbDrain = 20f;
 
     private float currentStamina;
     private float regenTimer;
@@ -24,6 +23,7 @@ public class PlayerStamina : MonoBehaviour
     [SerializeField] private float minimumSprintStamina = 5f;
 
     public bool HasStamina => currentStamina >= minimumSprintStamina;
+
     private void Awake()
     {
         currentStamina = maxStamina;
@@ -47,9 +47,7 @@ public class PlayerStamina : MonoBehaviour
     private void Regenerate()
     {
         float previous = currentStamina;
-
-        currentStamina += regenRate * Time.deltaTime;
-        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        currentStamina = Mathf.Clamp(currentStamina + regenRate * Time.deltaTime, 0f, maxStamina);
 
         if (!Mathf.Approximately(previous, currentStamina))
             NotifyStaminaChanged();
@@ -60,26 +58,16 @@ public class PlayerStamina : MonoBehaviour
         Drain(sprintDrain * Time.deltaTime);
     }
 
-    public void DrainClimb()
-    {
-        Drain(climbDrain * Time.deltaTime);
-    }
-
     private void Drain(float amount)
     {
         float previous = currentStamina;
-
-        currentStamina -= amount;
-        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-
+        currentStamina = Mathf.Clamp(currentStamina - amount, 0f, maxStamina);
         regenTimer = regenDelay;
 
         if (!Mathf.Approximately(previous, currentStamina))
-        {
             NotifyStaminaChanged();
-            Debug.Log(currentStamina);
-        }
     }
+
     private void NotifyStaminaChanged()
     {
         OnStaminaChanged?.Invoke(currentStamina, maxStamina);
@@ -88,15 +76,12 @@ public class PlayerStamina : MonoBehaviour
     public void RestoreFull()
     {
         currentStamina = maxStamina;
-
         NotifyStaminaChanged();
     }
 
     public void Restore(float amount)
     {
-        currentStamina += amount;
-        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-
+        currentStamina = Mathf.Clamp(currentStamina + amount, 0f, maxStamina);
         NotifyStaminaChanged();
     }
 }
