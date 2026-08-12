@@ -35,11 +35,14 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetButtonDown("Jump"))
-            jumpPressed = true;
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundRadius, groundLayer);
         playerAnimation.SetGrounded(isGrounded);
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            jumpPressed = true;
+            playerAnimation.StartJump(jumpForce);
+        }
     }
 
     private void FixedUpdate()
@@ -79,9 +82,6 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (!isGrounded)
-            return;
-
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }

@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4276342467847775678}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 8001977931751790901}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,8 +106,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8066600104091579389}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,7 +528,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 379c2589af8827348bfba326f352aed6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 603af0b5e59d92f428735a2c37da633e, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 379c2589af8827348bfba326f352aed6, type: 3}
+      propertyPath: m_AnimatePhysics
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 379c2589af8827348bfba326f352aed6, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:LeftLeg'\n\tand more ...\n\tFrom animation clip 'Climbing Down
+        Wall'\n\tFrom animation clip 'Climbing Up Wall'\n\tFrom animation clip 'Climbing
+        Up Wall'"
       objectReference: {fileID: 0}
     - target: {fileID: 6240733294840144465, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       propertyPath: m_Layer
@@ -587,9 +607,6 @@ PrefabInstance:
       addedObject: {fileID: 4147249530512222702}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 210430439810189952}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379c2589af8827348bfba326f352aed6, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7521167604126155693}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       insertIndex: -1
@@ -613,7 +630,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049394961875140085}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 40
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -647,7 +664,7 @@ MonoBehaviour:
   walkSpeed: 5
   sprintSpeed: 8
   acceleration: 20
-  jumpForce: 10
+  jumpForce: 1000
   groundCheck: {fileID: 5475408076393323666}
   groundRadius: 0.3
   groundLayer:
@@ -672,18 +689,6 @@ MonoBehaviour:
   regenDelay: 1.5
   sprintDrain: 15
   minimumSprintStamina: 5
---- !u!114 &210430439810189952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049394961875140085}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbf4481cff379aa43b6fae1b81424d26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerClimbing
 --- !u!136 &7521167604126155693
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -703,10 +708,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.4
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1360863452907609615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,12 +719,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049394961875140085}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d3f06a066dec134a88cd4d0ac83fbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimation
   animator: {fileID: 4359351562807770421}
+  playerRigidbody: {fileID: 6056036548759119058}
   smoothSpeed: 10
 --- !u!4 &7683048548632274767 stripped
 Transform:

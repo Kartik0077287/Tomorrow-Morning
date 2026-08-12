@@ -3,15 +3,16 @@ using UnityEngine;
 public class ZombieChaseState : ZombieState
 {
     private Transform target;
-
     private Vector3 lastKnownPosition;
-
     private float lostPlayerTimer;
+    private float nextAttackTime;
 
     private const float memoryDuration = 4f;
+    private const float attackRange = 1.5f;
+    private const float attackDamage = 10f;
+    private const float attackCooldown = 1f;
 
-    public ZombieChaseState(ZombieStateMachine zombie)
-        : base(zombie)
+    public ZombieChaseState(ZombieStateMachine zombie) : base(zombie)
     {
     }
 
@@ -19,16 +20,14 @@ public class ZombieChaseState : ZombieState
     {
         zombie.Agent.isStopped = false;
         zombie.Agent.speed = zombie.ChaseSpeed;
-
         lostPlayerTimer = 0f;
+        nextAttackTime = 0f;
 
         if (zombie.Detection.CanSeePlayer)
         {
             target = zombie.Detection.DetectedPlayer;
             lastKnownPosition = target.position;
         }
-
-        Debug.Log("Zombie entered Chase State");
     }
 
     public override void Update()
@@ -36,34 +35,49 @@ public class ZombieChaseState : ZombieState
         if (zombie.Detection.CanSeePlayer)
         {
             target = zombie.Detection.DetectedPlayer;
-
             lastKnownPosition = target.position;
-
             lostPlayerTimer = 0f;
 
-            zombie.Agent.SetDestination(target.position);
+            float distance = Vector3.Distance(zombie.transform.position, target.position);
+            if (distance <= attackRange)
+            {
+                zombie.Agent.isStopped = true;
+                AttackPlayer();
+            }
+            else
+            {
+                zombie.Agent.isStopped = false;
+                zombie.Agent.SetDestination(target.position);
+            }
 
             return;
         }
+
+        zombie.Agent.isStopped = false;
         zombie.Agent.speed = zombie.ChaseSpeed;
-
-        // Player currently isn't visible
         lostPlayerTimer += Time.deltaTime;
-
         zombie.Agent.SetDestination(lastKnownPosition);
 
-        // Give up after memory expires
         if (lostPlayerTimer >= memoryDuration)
-        {
             zombie.ChangeState(zombie.WanderState);
-        }
+    }
+
+    private void AttackPlayer()
+    {
+        if (Time.time < nextAttackTime || target == null)
+            return;
+
+        PlayerHealth health = target.GetComponentInParent<PlayerHealth>();
+        if (health == null)
+            return;
+
+        health.TakeDamage(attackDamage);
+        nextAttackTime = Time.time + attackCooldown;
     }
 
     public override void Exit()
     {
         target = null;
-
-        // Return to normal wandering speed
-        
+        zombie.Agent.isStopped = false;
     }
 }
