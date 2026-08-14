@@ -72,7 +72,7 @@ Transform:
   m_GameObject: {fileID: 8001977931751790901}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -231,6 +231,9 @@ MonoBehaviour:
   cameraPivot: {fileID: 7664557281012786664}
   defaultDistance: 4
   minimumDistance: 0.5
+  aimDistance: 2
+  aimShoulderOffset: 0.75
+  aimHeightOffset: 0.2
   cameraRadius: 0.3
   collisionOffset: 0.15
   collisionLayers:
@@ -256,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000004970789
+      value: 0.401
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -550,6 +553,10 @@ PrefabInstance:
         Wall'\n\tFrom animation clip 'Climbing Up Wall'\n\tFrom animation clip 'Climbing
         Up Wall'"
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 379c2589af8827348bfba326f352aed6, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6240733294840144465, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -611,6 +618,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379c2589af8827348bfba326f352aed6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1360863452907609615}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379c2589af8827348bfba326f352aed6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2002725002052022513}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379c2589af8827348bfba326f352aed6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9105854730416180448}
   m_SourcePrefab: {fileID: 100100000, guid: 379c2589af8827348bfba326f352aed6, type: 3}
 --- !u!95 &4359351562807770421 stripped
 Animator:
@@ -630,7 +643,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049394961875140085}
   serializedVersion: 5
-  m_Mass: 40
+  m_Mass: 70
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -664,7 +677,7 @@ MonoBehaviour:
   walkSpeed: 5
   sprintSpeed: 8
   acceleration: 20
-  jumpForce: 1000
+  jumpForce: 100
   groundCheck: {fileID: 5475408076393323666}
   groundRadius: 0.3
   groundLayer:
@@ -727,6 +740,43 @@ MonoBehaviour:
   animator: {fileID: 4359351562807770421}
   playerRigidbody: {fileID: 6056036548759119058}
   smoothSpeed: 10
+--- !u!114 &2002725002052022513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049394961875140085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d766eff9a8ed584fb36a9e16ad4bfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+--- !u!114 &9105854730416180448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049394961875140085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b9453916b4df6f48bfae2593d821aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  equippedWeapon: 0
+  cameraCollision: {fileID: 3298596980627647345}
+  crosshair: {fileID: 0}
+  comboResetTime: 0.8
+  minimumAttackInterval: 0.15
+  knifeDamage: 35
+  attackRange: 2
+  attackRadius: 0.75
+  zombieLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  fireInterval: 0.15
 --- !u!4 &7683048548632274767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 379c2589af8827348bfba326f352aed6, type: 3}

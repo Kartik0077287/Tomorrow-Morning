@@ -71,6 +71,7 @@ public class ZombieChaseState : ZombieState
         if (health == null)
             return;
 
+        zombie.TriggerAttack();
         health.TakeDamage(attackDamage);
         nextAttackTime = Time.time + attackCooldown;
     }

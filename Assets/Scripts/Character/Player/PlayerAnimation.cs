@@ -14,6 +14,7 @@ public class PlayerAnimation : MonoBehaviour
     private static readonly int IsGroundedHash = Animator.StringToHash("IsGrounded");
     private static readonly int KnifeInwardHash = Animator.StringToHash("KnifeInward");
     private static readonly int KnifeOutwardHash = Animator.StringToHash("KnifeOutward");
+    private static readonly int ShootHash = Animator.StringToHash("Shoot");
     private static readonly int DeathHash = Animator.StringToHash("Death");
 
     private float targetMoveSpeed;
@@ -52,5 +53,6 @@ public class PlayerAnimation : MonoBehaviour
 
     public void TriggerKnifeInward() => animator.SetTrigger(KnifeInwardHash);
     public void TriggerKnifeOutward() => animator.SetTrigger(KnifeOutwardHash);
+    public void TriggerShoot() => animator.SetTrigger(ShootHash);
     public void TriggerDeath() => animator.SetTrigger(DeathHash);
 }

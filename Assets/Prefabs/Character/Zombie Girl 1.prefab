@@ -311,6 +311,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2de02a77990a28041a011a007473adf8, type: 2}
     - target: {fileID: 6240733294840144465, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -373,6 +377,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3931096445022956824}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8992810037227167796}
   m_SourcePrefab: {fileID: 100100000, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
 --- !u!1 &7386235193398607957 stripped
 GameObject:
@@ -400,7 +407,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 136
-  eyePoint: {fileID: 0}
+  eyePoint: {fileID: 6416260538656197386}
 --- !u!195 &1600261854341402274
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -447,7 +454,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7386235193398607957}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8f33552ca9b8e6a46976d07156de6686, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -486,10 +493,24 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &8992810037227167796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386235193398607957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a218f988f215c4fae81d3cfad55da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZombieHealth
+  maxHealth: 100
+  despawnDelay: 3
 --- !u!4 &7911414330773674735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
