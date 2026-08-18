@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1987.06
+      value: 2013.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
       propertyPath: m_LocalPosition.y
@@ -315,6 +315,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 2de02a77990a28041a011a007473adf8, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6240733294840144465, guid: 6ed6cfdd672c8d04f8ea35926541bade, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -399,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieDetection
   detectionRadius: 15
-  closeDetectionRadius: 3
+  closeDetectionRadius: 3.5
   viewAngle: 120
   playerLayer:
     serializedVersion: 2

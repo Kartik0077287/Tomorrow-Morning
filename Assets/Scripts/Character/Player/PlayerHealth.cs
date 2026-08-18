@@ -10,9 +10,13 @@ public class PlayerHealth : MonoBehaviour
     public float MaxHealth => maxHealth;
     public bool IsDead => CurrentHealth <= 0f;
 
+    private bool deathTriggered;
+    private PlayerAnimation playerAnimation;
+
     private void Awake()
     {
         CurrentHealth = maxHealth;
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     private void Start()
@@ -27,6 +31,12 @@ public class PlayerHealth : MonoBehaviour
 
         CurrentHealth = Mathf.Max(0f, CurrentHealth - amount);
         NotifyHealthChanged();
+
+        if (IsDead && !deathTriggered)
+        {
+            deathTriggered = true;
+            playerAnimation?.TriggerDeath();
+        }
     }
 
     public void Heal(float amount)
@@ -41,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
     public void RestoreFullHealth()
     {
         CurrentHealth = maxHealth;
+        deathTriggered = false;
         NotifyHealthChanged();
     }
 

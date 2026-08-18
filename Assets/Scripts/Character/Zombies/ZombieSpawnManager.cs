@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class ZombieSpawnManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject zombiePrefab;
+    [SerializeField] private GameObject[] zombiePrefabs;
     [SerializeField] private Transform player;
     [SerializeField] private Camera playerCamera;
 
@@ -46,6 +46,9 @@ public class ZombieSpawnManager : MonoBehaviour
 
     private void TrySpawnZombie()
     {
+        if (!HasValidZombiePrefab())
+            return;
+
         for (int i = 0; i < attemptsPerSpawn; i++)
         {
             Vector3 candidate = GetRandomPosition();
@@ -143,10 +146,52 @@ public class ZombieSpawnManager : MonoBehaviour
 
     private void SpawnZombie(Vector3 position)
     {
+        GameObject prefab = GetRandomZombiePrefab();
+        if (prefab == null)
+            return;
+
         Instantiate(
-            zombiePrefab,
+            prefab,
             position,
             Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+    }
+
+    private bool HasValidZombiePrefab()
+    {
+        if (zombiePrefabs == null)
+            return false;
+
+        foreach (GameObject prefab in zombiePrefabs)
+        {
+            if (prefab != null)
+                return true;
+        }
+
+        return false;
+    }
+
+    private GameObject GetRandomZombiePrefab()
+    {
+        int validCount = 0;
+        foreach (GameObject prefab in zombiePrefabs)
+        {
+            if (prefab != null)
+                validCount++;
+        }
+
+        int selection = Random.Range(0, validCount);
+        foreach (GameObject prefab in zombiePrefabs)
+        {
+            if (prefab == null)
+                continue;
+
+            if (selection == 0)
+                return prefab;
+
+            selection--;
+        }
+
+        return null;
     }
 
     public void NotifyZombieDestroyed()

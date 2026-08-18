@@ -11,6 +11,8 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Weapon")]
     [SerializeField] private EquippedWeapon equippedWeapon = EquippedWeapon.Knife;
+    [SerializeField] private GameObject knifeObject;
+    [SerializeField] private GameObject gunObject;
     [SerializeField] private CameraCollision cameraCollision;
     [SerializeField] private GameObject crosshair;
 
@@ -39,6 +41,7 @@ public class PlayerCombat : MonoBehaviour
     private void Start()
     {
         SetAiming(false);
+        UpdateWeaponVisuals();
     }
 
     private void Update()
@@ -67,13 +70,26 @@ public class PlayerCombat : MonoBehaviour
         float scroll = Input.mouseScrollDelta.y;
 
         if (scroll > 0f && equippedWeapon == EquippedWeapon.Knife)
+        {
             equippedWeapon = EquippedWeapon.Gun;
+            UpdateWeaponVisuals();
+        }
         else if (scroll < 0f && equippedWeapon == EquippedWeapon.Gun)
         {
             equippedWeapon = EquippedWeapon.Knife;
             nextAttackIsInward = false;
             SetAiming(false);
+            UpdateWeaponVisuals();
         }
+    }
+
+    private void UpdateWeaponVisuals()
+    {
+        if (knifeObject != null)
+            knifeObject.SetActive(equippedWeapon == EquippedWeapon.Knife);
+
+        if (gunObject != null)
+            gunObject.SetActive(equippedWeapon == EquippedWeapon.Gun);
     }
 
     private void FireGun()
