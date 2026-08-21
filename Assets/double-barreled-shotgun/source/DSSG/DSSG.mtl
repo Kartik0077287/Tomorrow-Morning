@@ -1,0 +1,13 @@
+# Blender 4.1.1 MTL File: 'dshh169.blend'
+# www.blender.org
+
+newmtl DSSG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd SimpleBake_Bakes/DSSG/Plane.008_DSSG_PBR_Diffuse.png
+map_Ns SimpleBake_Bakes/DSSG/Plane.008_DSSG_PBR_Roughness.png
+map_refl SimpleBake_Bakes/DSSG/Plane.008_DSSG_PBR_Metalness.png
+map_Ke SimpleBake_Bakes/DSSG/Stvol_emission.png

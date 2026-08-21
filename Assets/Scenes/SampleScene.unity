@@ -1902,6 +1902,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4359351562807770421, guid: 5f3383d80788b58418d806ac7cfa932f, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Climbing Down
+        Wall'\n\tFrom animation clip 'Climbing Up Wall'\n\tFrom animation clip 'Climbing
+        Up Wall'\n\tFrom animation clip 'Reloading'"
+      objectReference: {fileID: 0}
     - target: {fileID: 7049394961875140085, guid: 5f3383d80788b58418d806ac7cfa932f, type: 3}
       propertyPath: m_Name
       value: Player

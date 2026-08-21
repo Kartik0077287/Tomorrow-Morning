@@ -28,9 +28,12 @@ public class PlayerCombat : MonoBehaviour
 
     [Header("Gun")]
     [SerializeField] private float fireInterval = 0.15f;
+    [SerializeField] private float reloadDuration = 2.5f;
 
     private PlayerAnimation playerAnimation;
     private bool nextAttackIsInward;
+    private bool isReloading;
+    private float reloadEndTime;
     private float lastAttackTime = float.NegativeInfinity;
 
     private void Awake()
@@ -46,6 +49,9 @@ public class PlayerCombat : MonoBehaviour
 
     private void Update()
     {
+        if (isReloading && Time.time >= reloadEndTime)
+            isReloading = false;
+
         HandleWeaponSwitch();
 
         if (Time.time - lastAttackTime > comboResetTime)
@@ -53,11 +59,20 @@ public class PlayerCombat : MonoBehaviour
 
         if (equippedWeapon == EquippedWeapon.Gun)
         {
-            bool aiming = Input.GetMouseButton(0);
+            if (Input.GetKeyDown(KeyCode.R) && !isReloading)
+            {
+                StartReload();
+                return;
+            }
+
+            bool aiming = !isReloading && Input.GetMouseButton(0);
             SetAiming(aiming);
 
-            if (aiming && Time.time - lastAttackTime >= fireInterval)
+            if (!isReloading && Input.GetMouseButtonDown(0) &&
+                Time.time - lastAttackTime >= fireInterval)
+            {
                 FireGun();
+            }
         }
         else if (Input.GetMouseButtonDown(0))
         {
@@ -67,6 +82,9 @@ public class PlayerCombat : MonoBehaviour
 
     private void HandleWeaponSwitch()
     {
+        if (isReloading)
+            return;
+
         float scroll = Input.mouseScrollDelta.y;
 
         if (scroll > 0f && equippedWeapon == EquippedWeapon.Knife)
@@ -81,6 +99,14 @@ public class PlayerCombat : MonoBehaviour
             SetAiming(false);
             UpdateWeaponVisuals();
         }
+    }
+
+    private void StartReload()
+    {
+        isReloading = true;
+        reloadEndTime = Time.time + reloadDuration;
+        SetAiming(false);
+        playerAnimation.TriggerReload();
     }
 
     private void UpdateWeaponVisuals()
