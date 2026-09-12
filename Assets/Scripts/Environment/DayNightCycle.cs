@@ -31,6 +31,7 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private Gradient ambientLightGradient;
 
     private float timeOfDayNormalized;
+    private float environmentUpdateTimer;
 
     [Header("Day / Night Time")]
     [SerializeField, Range(0f, 24f)] private float dayStartTime = 6f;
@@ -84,26 +85,44 @@ public class DayNightCycle : MonoBehaviour
         // Moon is always opposite the sun
         moon.transform.rotation = Quaternion.Euler(sunRotation + 90f, 170f, 0f);
     }
-
     private void UpdateLighting()
     {
         // Sun intensity
         if (sun != null)
         {
-            sun.intensity = sunIntensityCurve.Evaluate(timeOfDayNormalized);
+            sun.intensity =
+                sunIntensityCurve.Evaluate(timeOfDayNormalized);
         }
 
         // Moon intensity
         if (moon != null)
         {
-            moon.intensity = moonIntensityCurve.Evaluate(timeOfDayNormalized);
+            moon.intensity =
+                moonIntensityCurve.Evaluate(timeOfDayNormalized);
         }
 
-        // Ambient light
-        RenderSettings.ambientLight = ambientLightGradient.Evaluate(timeOfDayNormalized);
+        // Ambient lighting
+        float ambientIntensity =
+            ambientIntensityCurve.Evaluate(timeOfDayNormalized);
 
-        // Update Global Illumination
-        DynamicGI.UpdateEnvironment();
+        Color ambientColor =
+            ambientLightGradient.Evaluate(timeOfDayNormalized);
+
+        RenderSettings.ambientLight =
+            ambientColor * ambientIntensity;
+
+        // Reflection intensity
+        RenderSettings.reflectionIntensity =
+            reflectionIntensityCurve.Evaluate(timeOfDayNormalized);
+
+        // Update environment
+        environmentUpdateTimer += Time.deltaTime;
+
+        if (environmentUpdateTimer >= 0.5f)
+        {
+            DynamicGI.UpdateEnvironment();
+            environmentUpdateTimer = 0f;
+        }
     }
 
     private void UpdateSkybox()
@@ -121,52 +140,96 @@ public class DayNightCycle : MonoBehaviour
         sunIntensityCurve = new AnimationCurve(
             new Keyframe(0.00f, 0f),
             new Keyframe(0.20f, 0f),
-            new Keyframe(0.25f, 0.2f),
-            new Keyframe(0.35f, 0.8f),
+            new Keyframe(0.23f, 0.05f),
+            new Keyframe(0.25f, 0.25f),
+            new Keyframe(0.30f, 0.65f),
+            new Keyframe(0.40f, 1.0f),
             new Keyframe(0.50f, 1.2f),
-            new Keyframe(0.65f, 0.8f),
-            new Keyframe(0.75f, 0.2f),
+            new Keyframe(0.60f, 1.0f),
+            new Keyframe(0.70f, 0.65f),
+            new Keyframe(0.75f, 0.25f),
+            new Keyframe(0.77f, 0.05f),
             new Keyframe(0.80f, 0f),
             new Keyframe(1.00f, 0f)
         );
 
         // Moon Intensity
         moonIntensityCurve = new AnimationCurve(
-            new Keyframe(0.00f, 0.15f),
-            new Keyframe(0.20f, 0.10f),
-            new Keyframe(0.25f, 0.00f),
-            new Keyframe(0.75f, 0.00f),
-            new Keyframe(0.80f, 0.10f),
-            new Keyframe(1.00f, 0.15f)
+            new Keyframe(0.00f, 0.25f),
+            new Keyframe(0.15f, 0.25f),
+            new Keyframe(0.20f, 0.20f),
+            new Keyframe(0.23f, 0.10f),
+            new Keyframe(0.25f, 0.02f),
+
+            // Day
+            new Keyframe(0.30f, 0f),
+            new Keyframe(0.70f, 0f),
+
+            // Sunset / night
+            new Keyframe(0.75f, 0.02f),
+            new Keyframe(0.77f, 0.10f),
+            new Keyframe(0.80f, 0.20f),
+            new Keyframe(0.85f, 0.25f),
+            new Keyframe(1.00f, 0.25f)
         );
 
         // Sky Exposure
         skyExposureCurve = new AnimationCurve(
-            new Keyframe(0.00f, 0.10f), // Midnight
-            new Keyframe(0.20f, 0.15f),
-            new Keyframe(0.25f, 0.35f), // Sunrise
-            new Keyframe(0.50f, 1.30f), // Noon
-            new Keyframe(0.75f, 0.35f), // Sunset
-            new Keyframe(0.80f, 0.15f),
-            new Keyframe(1.00f, 0.10f)  // Midnight
+            new Keyframe(0.00f, 0.22f), // Midnight
+            new Keyframe(0.15f, 0.20f),
+            new Keyframe(0.20f, 0.25f),
+
+            // Dawn
+            new Keyframe(0.23f, 0.40f),
+            new Keyframe(0.25f, 0.60f),
+            new Keyframe(0.30f, 0.90f),
+
+            // Day
+            new Keyframe(0.40f, 1.15f),
+            new Keyframe(0.50f, 1.30f),
+            new Keyframe(0.60f, 1.15f),
+
+            // Sunset
+            new Keyframe(0.70f, 0.90f),
+            new Keyframe(0.75f, 0.60f),
+            new Keyframe(0.77f, 0.40f),
+
+            // Night
+            new Keyframe(0.80f, 0.25f),
+            new Keyframe(0.85f, 0.20f),
+            new Keyframe(1.00f, 0.22f)
         );
 
         // Ambient Intensity
         ambientIntensityCurve = new AnimationCurve(
-            new Keyframe(0.0f, 0.15f),
-            new Keyframe(0.25f, 0.35f),
+            new Keyframe(0.00f, 0.28f),
+            new Keyframe(0.15f, 0.25f),
+            new Keyframe(0.20f, 0.30f),
+
+            new Keyframe(0.25f, 0.45f),
+            new Keyframe(0.30f, 0.70f),
+
             new Keyframe(0.50f, 1.0f),
-            new Keyframe(0.75f, 0.35f),
-            new Keyframe(1.0f, 0.15f)
+
+            new Keyframe(0.70f, 0.70f),
+            new Keyframe(0.75f, 0.45f),
+
+            new Keyframe(0.80f, 0.30f),
+            new Keyframe(0.85f, 0.25f),
+            new Keyframe(1.00f, 0.28f)
         );
 
         // Reflection Intensity
         reflectionIntensityCurve = new AnimationCurve(
-            new Keyframe(0.0f, 0.10f),
-            new Keyframe(0.25f, 0.30f),
+            new Keyframe(0.00f, 0.30f),
+            new Keyframe(0.20f, 0.35f),
+            new Keyframe(0.25f, 0.50f),
+            new Keyframe(0.30f, 0.75f),
             new Keyframe(0.50f, 1.0f),
-            new Keyframe(0.75f, 0.30f),
-            new Keyframe(1.0f, 0.10f)
+            new Keyframe(0.70f, 0.75f),
+            new Keyframe(0.75f, 0.50f),
+            new Keyframe(0.80f, 0.35f),
+            new Keyframe(1.00f, 0.30f)
         );
 
         // Fog Density
