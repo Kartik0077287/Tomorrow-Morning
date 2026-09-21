@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8f40e5325189342c4b3d86e59f7fce6d
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 229716
+  packageName: Realistic Tree Pack 1
+  packageVersion: 1.0
+  assetPath: Assets/Models/Realistic Tree/Shader/HDRP/Bark_HDRP.shadergraph
+  uploadId: 519026
